@@ -90,7 +90,7 @@ sunburst <- function(
     x,
     width = width,
     height = height,
-    package = 'sunburstR',
+    package = 'sunburstRumc',
     elementId = elementId,
     sizingPolicy
   )
@@ -114,7 +114,7 @@ sunburst <- function(
 #'
 #' @export
 sunburstOutput <- function(outputId, width = '100%', height = '400px'){
-  shinyWidgetOutput(outputId, 'sunburst', width, height, package = 'sunburstR')
+  shinyWidgetOutput(outputId, 'sunburst', width, height, package = 'sunburstRumc')
 }
 
 #' @rdname sunburst-shiny

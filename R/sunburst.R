@@ -133,7 +133,10 @@ sunburst_html <- function(id, style, class, ...){
       tags$div( id = id, class = class, style = style, style="position:relative;"
         ,tags$div(
           tags$div(class = "sunburst-main"
+
             , tags$div( class = "sunburst-click" )      
+
+
             , tags$div( class = "sunburst-sequence" )
             , tags$div( class = "sunburst-chart"
                 ,tags$div( class = "sunburst-explanation", style = "visibility:hidden;"
@@ -143,7 +146,11 @@ sunburst_html <- function(id, style, class, ...){
           )
           ,tags$div(class = "sunburst-sidebar"
             , tags$input( type = "checkbox", class = "sunburst-togglelegend", "Legend" )
+
             , tags$div( class = "sunburst-legend" )
+
+            , tags$div( class = "sunburst-legend", style = "visibility:hidden;" )
+
           )
         )
       )

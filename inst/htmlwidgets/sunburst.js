@@ -135,14 +135,22 @@ HTMLWidgets.widget({
         });
       }
 
+
       // Main function to draw and set up the visualization, once we have the data. this function creates the // sunburst
       
       
+
+      // Main function to draw and set up the visualization, once we have the data.
+
       function createVisualization(json) {
 
         // Basic setup of page elements.
         initializeBreadcrumbTrail();
+
         initializeBreadcrumbTrailClick();
+
+
+
         // Bounding circle underneath the sunburst, to make it easier to detect
         // when the mouse leaves the parent g.
         vis.append("circle")
@@ -217,6 +225,7 @@ HTMLWidgets.widget({
 
 
 
+
         chart._selection = sequenceArray.map(
           function(d){return d.name}
         );
@@ -242,7 +251,11 @@ HTMLWidgets.widget({
         dispatch.mouseleave(chart._selection);
         chart._selection = [];
 
+
       // Hide the breadcrumb trail
+
+        // Hide the breadcrumb trail
+
         d3.select(el).select("#" + el.id + "-trail")
             .style("visibility", "hidden");
 
@@ -263,6 +276,7 @@ HTMLWidgets.widget({
       }
 
       function click(d,i) {
+
         
         var sequenceArray = getAncestors(d);
         
@@ -276,6 +290,9 @@ HTMLWidgets.widget({
         
         updateBreadcrumbsClick(sequenceArray, percentageString);
         
+
+        var sequenceArray = getAncestors(d);
+
 
         dispatch.click(sequenceArray.map(
           function(d){return d.name}
@@ -305,6 +322,7 @@ HTMLWidgets.widget({
           .attr("id", el.id + "-endlabel")
           .style("fill", "#000");
       }
+
       
       //// test to create a permanent trail after click 
        function initializeBreadcrumbTrailClick() {
@@ -319,6 +337,9 @@ HTMLWidgets.widget({
           .style("fill", "#000");
       }
       
+
+
+
       // Generate a string that describes the points of a breadcrumb polygon.
       function breadcrumbPoints(d, i) {
         var points = [];
@@ -462,6 +483,7 @@ HTMLWidgets.widget({
             .style("visibility", "");
 
       }
+
       
            // Update the breadcrumb trail to show the current sequence and percentage.
       function updateBreadcrumbsClick(nodeArray, percentageString) {
@@ -587,6 +609,8 @@ HTMLWidgets.widget({
       
  /// creating of legends
 
+
+
       function drawLegend(nodes) {
 
         // Dimensions of legend item: width, height, spacing, radius of rounded rect.
@@ -652,6 +676,8 @@ HTMLWidgets.widget({
             .attr("text-anchor", "middle")
             .text(function(d) { return d.name; });
       }
+
+
 
 
 

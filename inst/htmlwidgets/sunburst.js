@@ -36,7 +36,7 @@ HTMLWidgets.widget({
       // Breadcrumb dimensions: width, height, spacing, width of tip/tail.
       //  these will be the defaults
       var b = {
-        w: 0, h: 30, s: 3, t: 10
+        w: 75, h: 30, s: 3, t: 10
       };
       //  if breadcrumb is provided in the option, we will overwrite
       //   with what is provided
@@ -321,6 +321,10 @@ HTMLWidgets.widget({
         trail.append("text")
           .attr("id", el.id + "-endlabel")
           .style("fill", "#000");
+          
+        trail.append("text")
+ 	        	.attr("id", el.id + "-hoveredTrail")
+		        .style("fill","#000");
       }
 
       
@@ -335,6 +339,10 @@ HTMLWidgets.widget({
         trail1.append("text")
           .attr("id", el.id + "-endlabel1")
           .style("fill", "#000");
+          
+        trail1.append("svg:text")
+ 	      	.attr("id",el.id + "-selectedTrail")
+		      .style("fill","#000");  
       }
       
 
@@ -419,8 +427,9 @@ HTMLWidgets.widget({
 
 
           // Set position for entering and updating nodes.
-          g.attr("transform", function(d, i) {
+          g.attr("transform", function(d, i) { 
             return "translate(" + d.breadcrumb_x + ", "+d.breadcrumb_h+")";
+            
           });
 
 
@@ -461,7 +470,7 @@ HTMLWidgets.widget({
               .text(function(d) { return d.name; });
 
           // Set position for entering and updating nodes.
-          g.attr("transform", function(d, i) {
+          g.attr("transform", function(d, i) { i = i+1
             return "translate(" + i * (b.w + b.s) + ", 0)";
           });
 
@@ -470,13 +479,21 @@ HTMLWidgets.widget({
 
           // Now move and update the percentage at the end.
           d3.select(el).select("#" + el.id + "-trail").select("#" + el.id + "-endlabel")
-              .attr("x", (nodeArray.length + 0.5) * (b.w + b.s))
+              .attr("x", (nodeArray.length + 1.5) * (b.w + b.s))
               .attr("y", b.h / 2)
               .attr("dy", "0.35em")
               .attr("text-anchor", "middle")
               .text(percentageString);
 
         }
+        
+       d3.select(el).select("#" + el.id + "-trail").select("#" + el.id + "-hoveredTrail")
+      .attr("x", (0.5)*(b.w + b.s))
+      .attr("y", b.h / 2)
+      .attr("dy", "0.35em")
+      .attr("text-anchor", "middle")
+      .style("font-weight","bold")
+      .text("Hovered");
 
         // Make the breadcrumb trail visible, if it's hidden.
         d3.select(el).select("#" + el.id + "-trail")
@@ -584,7 +601,7 @@ HTMLWidgets.widget({
               .text(function(d) { return d.name; });
 
           // Set position for entering and updating nodes.
-          g.attr("transform", function(d, i) {
+          g.attr("transform", function(d, i) { i = i+1
             return "translate(" + i * (b.w + b.s) + ", 0)";
           });
 
@@ -593,13 +610,21 @@ HTMLWidgets.widget({
 
           // Now move and update the percentage at the end.
           d3.select(el).select("#" + el.id + "-trail1").select("#" + el.id + "-endlabel1")
-              .attr("x", (nodeArray.length + 0.5) * (b.w + b.s))
+              .attr("x", (nodeArray.length + 1.5) * (b.w + b.s))
               .attr("y", b.h / 2)
               .attr("dy", "0.35em")
               .attr("text-anchor", "middle")
               .text(percentageString);
 
         }
+        
+        d3.select(el).select("#" + el.id + "-trail1").select("#" + el.id + "-selectedTrail")
+      .attr("x", (0.5)*(b.w + b.s))
+      .attr("y", b.h / 2)
+      .attr("dy", "0.35em")
+      .attr("text-anchor", "middle")
+      .style("font-weight","bold")
+      .text("Selected");
 
         // Make the breadcrumb trail visible, if it's hidden.
         d3.select(el).select("#" + el.id + "-trail1")
